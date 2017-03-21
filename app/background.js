@@ -14,16 +14,16 @@ for(var i=0; i<contextsList.length; i++){
 function tweetHandler(data,tab){
     switch(data.menuItemId){
         case 'selection':
-            chrome.tabs.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(data.selectionText)});
+            chrome.windows.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(data.selectionText)});
             break;
         case 'link':
-            chrome.tabs.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.linkUrl)});
+            chrome.windows.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.linkUrl)});
             break;
         case 'image':
-            chrome.tabs.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.srcUrl)});
+            chrome.windows.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.srcUrl)});
             break;
         case 'page':
-            chrome.tabs.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(tab.title)});
+            chrome.windows.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(tab.title)});
             break;
     }
 }
