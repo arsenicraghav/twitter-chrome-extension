@@ -1,4 +1,5 @@
 var contextsList = ["selection", "link", "image", "page"];
+var _API_URL = "https://twitter.com/intent/tweet"
 
 for(var i=0; i<contextsList.length; i++){
     var currContext = contextsList[i]
@@ -14,16 +15,24 @@ for(var i=0; i<contextsList.length; i++){
 function tweetHandler(data,tab){
     switch(data.menuItemId){
         case 'selection':
-            chrome.windows.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(data.selectionText), type: "panel" });
+            query_param = "?text="+encodeURIComponent(data.selectionText);
+            openSharingPopup(query_param);
             break;
         case 'link':
-            chrome.windows.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.linkUrl), type: "panel" });
+            query_param = "?url="+encodeURIComponent(data.linkUrl);
+            openSharingPopup(query_param);
             break;
         case 'image':
-            chrome.windows.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.srcUrl), type: "panel" });
+            query_param = "?url="+encodeURIComponent(data.srcUrl);
+            openSharingPopup(query_param);
             break;
         case 'page':
-            chrome.windows.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(tab.title)+"&url="+(data.pageUrl), type: "panel" });
+            query_param = "?text="+encodeURIComponent(tab.title)+"&url="+(data.pageUrl);
+            openSharingPopup(query_param);
             break;
     }
+}
+
+function openSharingPopup(query_param){
+    chrome.windows.create({url: _API_URL + query_param, type: "panel" });
 }
