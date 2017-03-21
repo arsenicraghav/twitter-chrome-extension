@@ -6,12 +6,12 @@ for(var i=0; i<contextsList.length; i++){
     chrome.contextMenus.create({
         title: contextMenuOption,
         contexts:[currContext],
-        onclick: tweetMe,
+        onclick: tweetHandler,
         id : currContext
     });
 }
 
-function tweetMe(data){
+function tweetHandler(data,tab){
     switch(data.menuItemId){
         case 'selection':
             chrome.tabs.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(data.selectionText)});
@@ -23,7 +23,7 @@ function tweetMe(data){
             chrome.tabs.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.srcUrl)});
             break;
         case 'page':
-            chrome.tabs.create({url:"https://twitter.com/intent/tweet?text=hardcoded_for_now"});
+            chrome.tabs.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(tab.title)});
             break;
     }
 }
