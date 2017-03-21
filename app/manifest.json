@@ -1,0 +1,18 @@
+{
+    "manifest_version":2,
+    "name": "Twitter Chrome Extension",
+    "description":"Chrome extension to help share content on twitter from chrome's context menu",
+    "version":"1.0",
+    "permissions":[
+      "contextMenus"
+    ],
+    "background":{
+      "scripts":["background.js"]
+    },
+  "icons":{
+    "16" : "icon.png",
+    "32" : "icon.png",
+    "64" : "icon.png",
+    "128": "icon.png"
+  }
+}
