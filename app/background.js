@@ -14,13 +14,13 @@ for(var i=0; i<contextsList.length; i++){
 function tweetMe(data){
     switch(data.menuItemId){
         case 'selection':
-            chrome.tabs.create({url:"https://twitter.com/intent/tweet?text="+data.selectionText});
+            chrome.tabs.create({url:"https://twitter.com/intent/tweet?text="+encodeURIComponent(data.selectionText)});
             break;
         case 'link':
-            chrome.tabs.create({url:"https://twitter.com/intent/tweet?url="+data.linkUrl});
+            chrome.tabs.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.linkUrl)});
             break;
         case 'image':
-            chrome.tabs.create({url:"https://twitter.com/intent/tweet?url="+data.srcUrl});
+            chrome.tabs.create({url:"https://twitter.com/intent/tweet?url="+encodeURIComponent(data.srcUrl)});
             break;
         case 'page':
             chrome.tabs.create({url:"https://twitter.com/intent/tweet?text=hardcoded_for_now"});
