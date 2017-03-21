@@ -4,6 +4,6 @@ chrome.contextMenus.create({
     onclick: tweetMe
 });
 
-function tweetMe(){
-    alert('you tweeted me!');
+function tweetMe(selectedText){
+    chrome.tabs.create({url:"https://twitter.com/intent/tweet?text="+selectedText.selectionText});
 }
